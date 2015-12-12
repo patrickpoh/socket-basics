@@ -23,6 +23,7 @@ socket.on('message', function(message){
 	console.log(message.text);
 	$message.append('<p><strong>'+message.name +' '+momentTimestamp.format('h:mm:ssa') +'</strong></p>');
 	$message.append('<p>'+ message.text +'</p>');
+	document.getElementById('bottomOfDiv').scrollIntoView(true);
 });
 
 //handles submitting of new message
