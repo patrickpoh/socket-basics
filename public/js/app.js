@@ -18,11 +18,13 @@ socket.on('connect', function() {
 socket.on('message', function(message){
 	var momentTimestamp = moment.utc(message.timestamp);
 	momentTimestamp.local();
-	var $message = jQuery('.messages');
+	var $messages = jQuery('.messages');
+	var $message = jQuery('<li class="list-group-item"></li>')
 	console.log('New app.js message: ');
 	console.log(message.text);
 	$message.append('<p><strong>'+message.name +' '+momentTimestamp.format('h:mm:ssa') +'</strong></p>');
 	$message.append('<p>'+ message.text +'</p>');
+	$messages.append($message);
 	document.getElementById('bottomOfDiv').scrollIntoView(true);
 });
 
@@ -30,7 +32,7 @@ socket.on('message', function(message){
 var $form = jQuery('#message-form');
 
 $form.on('submit', function (event){
-	event.preventDefault(); 
+	event.preventDefault();
 	//if you dont want to submit the old fashion way so that you dont have to keep refreshing the page
 
 	var $message = $form.find('input[name=message]');
