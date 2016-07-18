@@ -5,7 +5,7 @@ var app  = express();
 var http =  require('http').Server(app); //tells node to to use the same server.
 var io = require('socket.io')(http); //think of io as the app varaible
 
-
+//test
 app.use(express.static(__dirname + '/public'));
 
 var clientInfo = {};
@@ -59,7 +59,7 @@ io.on('connection', function(socket) {
 			sendCurrentUsers(socket);
 		}else{
 			message.timestamp = moment().valueOf();
-			io.to(clientInfo[socket.id].room).emit('message', message); //sent out to everybody 
+			io.to(clientInfo[socket.id].room).emit('message', message); //sent out to everybody
 		}
 	});
 
